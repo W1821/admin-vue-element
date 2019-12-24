@@ -1,5 +1,5 @@
 import mainService from './main.service';
-import loginService from '../login/login.service';
+// import loginService from '../login/login.service';
 import SessionStorageService from '../../common/service/SessionStorageService';
 import router from '../../app.router';
 
@@ -11,7 +11,8 @@ const ignoreUrls = [
 ];
 
 const checkLogin = () => {
-    return !!loginService.isLoggedIn();
+    // return !!loginService.isLoggedIn();
+    return SessionStorageService.get('user')
 };
 
 const hasAuth = (url) => {

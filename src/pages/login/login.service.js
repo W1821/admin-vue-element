@@ -1,5 +1,7 @@
+import SessionStorageService from '../../common/service/SessionStorageService';
 import HttpService from '../../common/service/HttpService';
 import {User} from '../system/user/user.model';
+
 
 let isLoggedIn = false;    // 缓存登录状态
 
@@ -21,6 +23,7 @@ const loginSuccess = (response) => {
     // 添加登录缓存
     isLoggedIn = true;
     userInfo = new User(response.data);
+    SessionStorageService.set('user', userInfo);
     return response;
 };
 

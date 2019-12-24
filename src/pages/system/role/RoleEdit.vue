@@ -105,7 +105,6 @@
                     }
                     return !!res;
                 });
-
             },
             setFormValue(data) {
                 this.role.setDataValue(data);
@@ -117,13 +116,14 @@
             getRequestBody() {
                 const body = this.role;
                 const checkedKeys = this.$refs.menuTree.getCheckedKeys();
-                checkedKeys.forEach(id => {
+                body.menuIds = [];
+                body.buttonIds = [];
+                (checkedKeys || []).forEach(id => {
                     if (id.endsWith('btn')) {
                         body.buttonIds.push(id.split('-')[0]);
                     } else {
                         body.menuIds.push(id);
                     }
-
                 });
                 return body;
             }

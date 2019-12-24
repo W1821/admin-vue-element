@@ -137,7 +137,8 @@
         },
 
         created() {
-            this.userInfo = loginService.getUserInfo();
+            // this.userInfo = loginService.getUserInfo();
+            this.userInfo = SessionStorageService.get('user');
             mainService.init().then(() => this.setDefaultMenuDataArr());
         },
         updated() {

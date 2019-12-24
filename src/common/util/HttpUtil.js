@@ -47,7 +47,7 @@ const handlePromise = (promise, resolve, reject) => {
 
         // 把HttpResponseError处理成为 HttpError对象
         .catch(error => {
-            window.console.log('HttpUtil->handlePromise->catch', error.response);
+            window.console.log('HttpUtil->handlePromise->catch', error);
             const status = error.response ? error.response.status : '500';
             let statusText = error.response ? error.response.statusText : '系统错误，请稍后再试！';
             reject(new HttpError(status, statusText));
