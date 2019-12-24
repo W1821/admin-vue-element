@@ -137,8 +137,7 @@
         },
 
         created() {
-            // this.userInfo = loginService.getUserInfo();
-            this.userInfo = SessionStorageService.get('user');
+            this.userInfo = loginService.getUserInfo();
             mainService.init().then(() => this.setDefaultMenuDataArr());
         },
         updated() {
@@ -215,7 +214,7 @@
                     .then(success => {
                         // 跳转成功保存当前地址
                         if (success) {
-                            SessionStorageService.set('redirectUrl', subMenu.routePath);
+                            mainService.setRedirectUrl(subMenu.routePath);
                         }
                     });
             },

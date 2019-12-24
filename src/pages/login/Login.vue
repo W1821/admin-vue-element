@@ -81,16 +81,8 @@
             const params = this.$route.params;
             // 存在type表示不需要自动登录
             if (params.type) {
-                window.console.log('LoginComponent ngOnInit 不需要自动登录', params);
                 loginService.logout();
-                return;
             }
-            loginService.autoLogin().then(msg => {
-                window.console.log('loginService.autoLogin()', msg);
-                if (msg.success) {
-                    this.loginSuccess();
-                }
-            });
         },
 
         methods: {
@@ -165,7 +157,7 @@
         width: 100%;
     }
 
-    .error-alert{
+    .error-alert {
         margin-bottom: 6px;
     }
 

@@ -3,16 +3,11 @@ import HttpService from '../../common/service/HttpService';
 import {User} from '../system/user/user.model';
 
 
-let isLoggedIn = false;    // 缓存登录状态
-
-let userInfo;   // 缓存登录人信息，也可能是登录失败信息
-
 /**
  * 清理缓存
  */
 const clearLoginInfo = () => {
-    isLoggedIn = false;
-    userInfo = new User();
+    SessionStorageService.set(USER, null);
 };
 
 
@@ -21,9 +16,7 @@ const clearLoginInfo = () => {
  */
 const loginSuccess = (response) => {
     // 添加登录缓存
-    isLoggedIn = true;
-    userInfo = new User(response.data);
-    SessionStorageService.set('user', userInfo);
+    SessionStorageService.set(USER, new User(response.data));
     return response;
 };
 
@@ -35,14 +28,16 @@ const loginError = (error) => {
     return error;
 };
 
+const USER = 'user';
+
 class LoginService {
 
     isLoggedIn = () => {
-        return isLoggedIn;
+        return SessionStorageService.get(USER);
     };
 
     getUserInfo = () => {
-        return userInfo;
+        return SessionStorageService.get(USER);
     };
 
     autoLogin = () => {

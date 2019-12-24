@@ -1,6 +1,5 @@
 import mainService from './main.service';
-// import loginService from '../login/login.service';
-import SessionStorageService from '../../common/service/SessionStorageService';
+import loginService from '../login/login.service';
 import router from '../../app.router';
 
 const ignoreUrls = [
@@ -11,8 +10,7 @@ const ignoreUrls = [
 ];
 
 const checkLogin = () => {
-    // return !!loginService.isLoggedIn();
-    return SessionStorageService.get('user')
+    return !!loginService.isLoggedIn();
 };
 
 const hasAuth = (url) => {
@@ -73,7 +71,7 @@ const canActivate = (to) => {
     }
 
     // 登陆后, F5刷新，直接通过
-    const redirectUrl = SessionStorageService.get('redirectUrl');
+    const redirectUrl = mainService.getRedirectUrl();
     if (redirectUrl === to.path) {
         window.console.log('路由守卫 F5刷新--->直接通过--->', redirectUrl);
         return true;

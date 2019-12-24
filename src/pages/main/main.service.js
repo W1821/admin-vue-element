@@ -1,3 +1,4 @@
+import SessionStorageService from '../../common/service/SessionStorageService';
 import HttpService from '../../common/service/HttpService';
 import menuService from '../system/menu/menu.service';
 
@@ -19,6 +20,8 @@ const setMenuData = (response) => {
     }
 };
 
+const REDIRECT_URL = 'redirectUrl';
+
 class MainService {
 
     getMenuListData = () => {
@@ -27,6 +30,13 @@ class MainService {
 
     getMenuTreeData = () => {
         return menuTreeData;
+    };
+
+    getRedirectUrl = () => {
+        SessionStorageService.get(REDIRECT_URL);
+    };
+    setRedirectUrl = (redirectUrl) => {
+        SessionStorageService.set(REDIRECT_URL, redirectUrl);
     };
 
     /**
