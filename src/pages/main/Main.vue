@@ -87,7 +87,11 @@
                         </el-breadcrumb>
 
                         <div class="content">
-                            <router-view></router-view>
+                            <transition name="slide-top">
+                                <keep-alive>
+                                    <router-view class="child-view"></router-view>
+                                </keep-alive>
+                            </transition>
                         </div>
 
                     </el-main>
@@ -396,5 +400,24 @@
         right: 0;
         color: white;
     }
+
+    .child-view {
+        transition: all .6s;
+    }
+
+    .slide-top-enter,
+    .slide-bottom-leave-active {
+        opacity: 0;
+        -webkit-transform: translate(0, 100%);
+        transform: translate(0, 100%);
+    }
+
+    .slide-top-leave-active,
+    .slide-bottom-enter {
+        opacity: 0;
+        -webkit-transform: translate(0, -100%);
+        transform: translate(0, -100%);
+    }
+
 
 </style>

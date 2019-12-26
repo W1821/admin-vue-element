@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!--  -->
+        <!-- 表格 -->
         <el-table :data="tableData"
                   :height="tableHeight"
                   :row-key="rowKey"
