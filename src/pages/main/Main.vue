@@ -87,7 +87,7 @@
                         </el-breadcrumb>
 
                         <div class="content">
-                            <transition name="slide-top">
+                            <transition name="slide-left">
                                 <keep-alive>
                                     <router-view class="child-view"></router-view>
                                 </keep-alive>
@@ -248,15 +248,6 @@
             },
 
             /**
-             * 设置默认面包屑数据
-             */
-            setDefaultBreadcrumb(menu) {
-                this.breadcrumb.rootName = menu.menuName;
-                this.breadcrumb.leftName = null;
-                this.breadcrumb.subName = null;
-            },
-
-            /**
              * F5刷新逻辑
              */
             f5Refresh() {
@@ -405,18 +396,18 @@
         transition: all .6s;
     }
 
-    .slide-top-enter,
-    .slide-bottom-leave-active {
+    .slide-left-enter,
+    .slide-right-leave-active {
         opacity: 0;
-        -webkit-transform: translate(0, 100%);
-        transform: translate(0, 100%);
+        -webkit-transform: translate(100%, 0);
+        transform: translate(100%, 0);
     }
 
-    .slide-top-leave-active,
-    .slide-bottom-enter {
+    .slide-left-leave-active,
+    .slide-right-enter {
         opacity: 0;
-        -webkit-transform: translate(0, -100%);
-        transform: translate(0, -100%);
+        -webkit-transform: translate(-100%, 0);
+        transform: translate(-100% 0);
     }
 
 
