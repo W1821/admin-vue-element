@@ -35,13 +35,11 @@ const handleSuccess = (serverResponse) => {
 const handleError = (error, needNotice = true) => {
     window.console.log('HttpService handleError', error, typeof error, needNotice);
     // 如果请求需要通知
-    if (needNotice) {
-        if (error instanceof HttpError) {
-            handleHttpError(error);
-        }
-        if (error instanceof ServerResponse) {
-            handleServerResponseError(error);
-        }
+    if (error instanceof HttpError) {
+        handleHttpError(error, needNotice);
+    }
+    if (error instanceof ServerResponse) {
+        handleServerResponseError(error, needNotice);
     }
     return error;
 };
@@ -50,23 +48,36 @@ const handleError = (error, needNotice = true) => {
 /**
  * http请求失败
  */
-const handleHttpError = (httpError) => {
+const handleHttpError = (httpError, needNotice) => {
     window.console.log('HttpService handleHttpError', httpError);
     const status = httpError.status;
     if (status === 401) {
-        NotificationService.error('未登录状态，请登录');
+        if (needNotice) {
+            NotificationService.error('未登录状态，请登录');
+        }
         router.push({path: '/login/1'});
         return;
     }
-    NotificationService.error(status + '错误,请联系管理员');
+    if (needNotice) {
+        NotificationService.error(status + '错误,请联系管理员');
+    }
 };
 
 /**
  * 处理服务端返回的逻辑错误
  */
-const handleServerResponseError = (serverResponse) => {
-    window.console.log('HttpService handleServerResponseError', serverResponse);
-    NotificationService.error(serverResponse.code + '错误！' + serverResponse.msg);
+const handleServerResponseError = (serverResponse, needNotice) => {
+    const status = serverResponse.code;
+    if (status === 401) {
+        if (needNotice) {
+            NotificationService.error('未登录状态，请登录');
+        }
+        router.push({path: '/login/1'});
+        return;
+    }
+    if (needNotice) {
+        NotificationService.error(serverResponse.code + '错误！' + serverResponse.msg);
+    }
 };
 
 export default class HttpService {
