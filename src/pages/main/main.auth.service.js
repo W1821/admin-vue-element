@@ -21,7 +21,6 @@ const hasAuth = (url) => {
 };
 
 const contains = (menus, url) => {
-    window.console.log('路由守卫 已登录--->contains--->', menus);
     for (const menu of menus) {
         if (url === menu.routePath) {
             return true;
@@ -58,10 +57,8 @@ const isIgnoreUrl = (url) => {
 
 // 路由守卫
 const canActivate = (to) => {
-    window.console.log('路由守卫权限判定开始--->跳转页面路由地址--->', to.path);
     // 判断是否登录
     const isLoggedIn = checkLogin();
-    window.console.log('路由守卫权限判定开始--->跳转页面路由地址--->checkLogin', isLoggedIn);
 
     // 未登陆，跳转登陆页面
     if (!isLoggedIn) {
