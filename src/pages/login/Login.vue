@@ -64,7 +64,7 @@
                 loading: false,
                 formModel: {
                     userName: '15256639988',
-                    password: '2',
+                    password: '1',
                 },
                 rules: {
                     userName: [
@@ -133,32 +133,4 @@
 
 </script>
 
-<style scoped>
-
-    .login-bg {
-        height: 100vh;
-        background: url("../../assets/images/bg.svg") no-repeat;
-        background-size: 100%;
-    }
-
-    .login-title {
-        margin-top: 100px;
-        margin-bottom: 50px;
-        text-align: center;
-        font-size: 33px;
-        color: rgba(0, 0, 0, .85);
-        font-family: Myriad Pro, Helvetica Neue, Arial, Helvetica, sans-serif;
-        font-weight: 600;
-        position: relative;
-        top: 2px;
-    }
-
-    .login-form-button {
-        width: 100%;
-    }
-
-    .error-alert {
-        margin-bottom: 6px;
-    }
-
-</style>
+<style scoped src="./Login.css"></style>
