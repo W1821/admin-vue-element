@@ -26,7 +26,7 @@
             </el-form-item>
 
             <el-form-item prop="" label="头像">
-                <upload-cropper  @onCropSuccess="onCropSuccess" :image-url="user.headPictureUrl"></upload-cropper>
+                <upload-cropper @onCropSuccess="onCropSuccess" :image-url="user.headPictureUrl"></upload-cropper>
             </el-form-item>
 
             <el-form-item prop="roleIds" label="角色">
@@ -127,10 +127,11 @@
                 });
             },
             getRequestBody() {
-                const body = this.user;
+                const body = {...this.user};
                 body.roles = body.roleIds.map(id => {
                     return {id};
                 });
+                delete body.roleIds;
                 return body;
             },
             onCropSuccess(data) {
